@@ -31,14 +31,16 @@
                 var touch = event.targetTouches[0];
                 var l=touch.clientX;
                 var t=touch.clientY;
-                if(l-100<0){
-                	l =100;
-                };if(t-100<0){
-                	t=100;
-                };if(l+100>document.documentElement.clientWidth){
-                	l= document.documentElement.clientWidth-100;
-                };if(t+100>document.documentElement.clientHeight){
-                	t = document.documentElement.clientHeight-100;
+                var ol=this.offsetHeight/2;
+                var ot=this.offsetWidth/2;
+                if(l-ol<0){
+                	l =ol;
+                };if(t-ol<0){
+                	t=ot;
+                };if(l+ol>document.documentElement.clientWidth){
+                	l= document.documentElement.clientWidth-ol;
+                };if(t+ot>document.documentElement.clientHeight){
+                	t = document.documentElement.clientHeight-ot;
                 };
                 	this.style.left =l+ 'px';
                     this.style.top = t+ 'px';
