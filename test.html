@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{ margin: 0; padding: 0;}
+			canvas{
+	position: absolute;top: 50%;left: 50%;margin-top: -100px;margin-left: -100px;
+			}
+		</style>
+		
+		
+	</head>
+	<body>
+	<canvas id="cvs" width=200 height=200;></canvas>
+		
+	</body>
+</html>
+
+
+
+<script>
+		var canvas = document.getElementById('cvs');
+    	var cvs = canvas.getContext('2d');
+         cvs.beginPath();
+         cvs.fillStyle = "#ff8844";
+         cvs.strokeStyle ="white";
+         cvs.arc(100,100,100,0,Math.PI*2,false);
+         cvs.fill();
+		 cvs.stroke();
+	drag(canvas);
+		function drag(obj){
+	obj.onmousedown=function(ev){
+		var disX=ev.clientX-obj.offsetLeft;
+		var disY=ev.clientY-obj.offsetTop;
+		
+		document.onmousemove=function(ev){ 
+			var l=ev.clientX-disX;
+			var t=ev.clientY-disY;
+		
+			var s_w=document.documentElement.clientWidth;
+			var s_h=document.documentElement.clientHeight;
+			
+			
+			if(t<0){
+				t=0;
+			};
+			if(l<0){
+				l=0
+			};
+			
+			if(t>s_h-obj.offsetHeight){
+				t=s_h-obj.offsetHeight;
+			};
+			if(l>s_w-obj.offsetWidth){
+				l=s_w-obj.offsetWidth;
+			}
+			
+			obj.style.left=l+"px";
+			obj.style.top=t+"px";
+			obj.style.margin=0;
+			
+						
+		};
+		
+		document.onmouseup=function(){
+			document.onmousemove=document.onmouseup=null;
+		};
+		
+		return false;
+		
+		
+	};
+
+};
+
+
+
+</script>
+
+
+

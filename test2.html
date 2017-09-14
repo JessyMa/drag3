@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+		<title></title>
+		<style>
+			*{ margin: 0; padding: 0;}
+			canvas{
+	position: absolute;top: 50%;left: 50%;margin-top: -100px;margin-left: -100px;
+			}
+		</style>
+		
+		
+	</head>
+	<body>
+	<canvas id="cvs" width=200 height=200;></canvas>
+		
+	</body>
+</html>
+
+
+
+<script>
+		var canvas = document.getElementById('cvs');
+    	var cvs = canvas.getContext('2d');
+         cvs.beginPath();
+         cvs.fillStyle = "#ff8844";
+         cvs.strokeStyle ="white";
+         cvs.arc(100,100,100,0,Math.PI*2,false);
+         cvs.fill();
+		 cvs.stroke();
+         canvas.addEventListener('touchstart', function(event) {
+            if (event.targetTouches.length == 1) {
+                canvas.addEventListener('touchmove', function(event) {
+        　　　　event.preventDefault();
+                var touch = event.targetTouches[0];
+                var l=touch.clientX;
+                var t=touch.clientY;
+                if(l-100<0){
+                	l =100;
+                };if(t-100<0){
+                	t=100;
+                };if(l+100>document.documentElement.clientWidth){
+                	l= document.documentElement.clientWidth-100;
+                };if(t+100>document.documentElement.clientHeight){
+                	t = document.documentElement.clientHeight-100;
+                };
+                	this.style.left =l+ 'px';
+                    this.style.top = t+ 'px';
+                    this.margin=0;
+                })
+            }else if(event.targetTouches.length == 2){
+                var a0=event.targetTouches[0];
+                var b0= event.targetTouches[1];
+                var a0X=a0.clientX;
+                // var a0Y=a0.clientY;
+                var b0X=b0.clientX;
+                var nowdis=Math.abs(b0X-a0X);
+                // var b0Y=b0.clientY;
+                canvas.addEventListener('touchmove', function(event) {
+                    var a1= event.targetTouches[0];
+                    var b1= event.targetTouches[1];
+                    var a1X=a1.clientX;
+                    // var a1Y=a1.clientY;
+                    var b1X=b1.clientX;
+                    var newdis=Math.abs(b1X-a1X);
+                    var beishu=newdis/nowdis;
+                    var r=100*beishu;
+                    cvs.arc(100,100,r,0,Math.PI*2,false);
+                    cvs.fill();
+                    cvs.stroke();
+                });
+                }
+                
+        }, false);
+
+</script>
+
+
+
