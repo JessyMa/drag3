@@ -29,7 +29,7 @@
 <script>
 	
 		var box = document.getElementById('box');
-	document.addEventListener('touchmove',null);
+// 	document.addEventListener('touchmove',null);
         box.addEventListener('touchstart', function(event) {
             if (event.targetTouches.length == 1) {
                 var touchs= event.targetTouches[0];
@@ -71,8 +71,8 @@
                     var b1X=b1.clientX;
                     var newdis=Math.abs(b1X-a1X);
                     var beishu=newdis/nowdis;
-			var boxw=this.offsetWidth;
-			var boxh=this.offsetHeight;
+			var boxw=box.offsetWidth;
+			var boxh=box.offsetHeight;
 			boxw=boxw*beishu;
 			boxh=boxh*beishu;
 			if(boxw>400){
