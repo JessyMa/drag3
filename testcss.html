@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
-		<title></title>
-		<style>
-			*{ margin: 0; padding: 0;}
-			body {
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+        <title></title>
+        <style>
+            *{ margin: 0; padding: 0;}
+            body {
     height: 100%;
     overflow: hidden;
 }
-			#box{
+            #box{
                 width: 200px;height: 200px;background: #ff8844;-moz-border-radius: 50%;-webkit-border-radius: 50%;border-radius: 50%;
-	           position: absolute;top: 50%;left: 50%;margin-top: -100px;margin-left: -100px;
-			}
-		</style>
-		
-		
-	</head>
-	<body>
-	<div id="box"></div>
-		
-	</body>
+               position: absolute;top: 50%;left: 50%;margin-top: -100px;margin-left: -100px;
+            }
+        </style>
+        
+        
+    </head>
+    <body>
+    <div id="box"></div>
+        
+    </body>
 </html>
 
 
 
 <script>
-	
-		var box = document.getElementById('box');
-// 	document.addEventListener('touchmove',null);
+    
+        var box = document.getElementById('box');
+//  document.addEventListener('touchmove',null);
         box.addEventListener('touchstart', function(event) {
             if (event.targetTouches.length == 1) {
                 var touchs= event.targetTouches[0];
@@ -43,50 +43,55 @@
                 var l=touch.clientX-disX;
                 var t=touch.clientY-disY;
                 if(l<0){
-                	l =0;
+                    l =0;
                 };if(t<0){
-                	t=0;
+                    t=0;
                 };if(l+this.offsetWidth>document.documentElement.clientWidth){
-                	l= document.documentElement.clientWidth-this.offsetWidth;
+                    l= document.documentElement.clientWidth-this.offsetWidth;
                 };if(t+this.offsetHeight>document.documentElement.clientHeight){
-                	t = document.documentElement.clientHeight-this.offsetHeight;
+                    t = document.documentElement.clientHeight-this.offsetHeight;
                 }
-                	this.style.left =l+ 'px';
+                    this.style.left =l+ 'px';
                     this.style.top = t+ 'px';
                     this.style.margin=0;
                 })
             }else if(event.targetTouches.length == 2){
+                var oldWidth=this.offsetWidth;
+                var oldHeight=this.offsetHeight;
+                var oldLeft=oDiv.offsetLeft;
+                var oldTop=oDiv.offsetTop;  
                 var a0=event.targetTouches[0];
                 var b0= event.targetTouches[1];
                 var a0X=a0.clientX;
-                // var a0Y=a0.clientY;
+                var a0Y=a0.clientY;
                 var b0X=b0.clientX;
+                var b0Y=b0.clientY;
                 var nowdis=Math.abs(b0X-a0X);
                 // var b0Y=b0.clientY;
                 this.addEventListener('touchmove', function(event) {
                     var a1= event.targetTouches[0];
                     var b1= event.targetTouches[1];
                     var a1X=a1.clientX;
-                    // var a1Y=a1.clientY;
+                    var a1Y=a1.clientY;
                     var b1X=b1.clientX;
+                    var b1Y=b1.clientY;
                     var newdis=Math.abs(b1X-a1X);
                     var beishu=newdis/nowdis;
-			var boxw=box.offsetWidth;
-			var boxh=box.offsetHeight;
-			boxw=boxw*beishu;
-			boxh=boxh*beishu;
-			if(boxw>400){
-                        boxw=400;
-				boxh=400;
-                    };if(boxw<100){
-                        boxw=100;
-			boxh=100;
-		    }
+                    var boxw=oldWidth;
+                    var boxh=oldHeight;
+                    boxw=boxw*beishu;
+                    boxh=boxh*beishu;
+                    if(boxw>400){
+                                boxw=400;
+                        boxh=400;
+                            };if(boxw<100){
+                                boxw=100;
+                    boxh=100;
+                    }
                     box.style.width=boxw+'px';
                     box.style.height=boxh+'px';
                 });
                 }
                 
         }, false);
-
 </script>
