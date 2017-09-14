@@ -69,11 +69,12 @@
                     var b1X=b1.clientX;
                     var newdis=Math.abs(b1X-a1X);
                     var beishu=newdis/nowdis;
-			if(beishu>=2){
-				alert(12);
+			if(beishu>=4){
+				alert("您放得太大了");
                         beishu=2;
                     };if(beishu<0.5){
                         beishu=.5;
+			    alert("不能再缩小了~亲");
                     }
                     box.style.width=100*beishu+'px';
                     box.style.height=100*beishu+'px';
